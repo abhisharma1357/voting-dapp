@@ -137,6 +137,7 @@ contract PollContract {
      * @return Option with maximum votes.
      */
     function result() public view returns (Option memory) {
+        require(now > startTime+(duration*1 days), "cannot see results before voting time is over");
         uint256 maxVote = 0;
         uint256 index = 0;
         for (uint256 i = 0; i < options.length; i++) {
